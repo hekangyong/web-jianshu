@@ -52,14 +52,14 @@ class Header extends React.Component {
             <SearchInfoSwitch
               onClick={() => handleChangePage(page, totalPage, this.spinIcon)}
             >
-              <i
+              <span
                 ref={icon => {
                   this.spinIcon = icon;
                 }}
                 className="iconfont spin"
               >
                 &#xe606;{" "}
-              </i>
+              </span>
               换一批
             </SearchInfoSwitch>
           </SearchInfoTitle>
@@ -72,7 +72,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { focused, handleInputFocus, handleInputBlur } = this.props;
+    const { focused, handleInputFocus, handleInputBlur, list } = this.props;
     return (
       <HeaderWrapper>
         <Logo />
@@ -86,7 +86,7 @@ class Header extends React.Component {
           <SearchWrapper>
             <CSSTransition timeout={200} in={focused} classNames="slide">
               <NavSearch
-                onFocus={handleInputFocus}
+                onFocus={() => handleInputFocus(list)}
                 onBlur={handleInputBlur}
                 className={focused ? "focused" : ""}
               ></NavSearch>
@@ -113,8 +113,8 @@ class Header extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleInputFocus() {
-      dispatch(actionCreators.getList());
+    handleInputFocus(list) {
+      list.size === 0 && dispatch(actionCreators.getList());
       dispatch(actionCreators.searchFoucs());
     },
     handleInputBlur() {
