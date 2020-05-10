@@ -1,8 +1,14 @@
 import React from "react";
+import { DetailWrapper, Header, Content } from "./style";
 
 class Details extends React.Component {
   render() {
-    return <div>Details</div>;
+    return (
+      <DetailWrapper>
+        <Header></Header>
+        <Content> </Content>
+      </DetailWrapper>
+    );
   }
 }
 

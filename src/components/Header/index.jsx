@@ -15,8 +15,9 @@ import {
   SearchInfoTitle,
   SearchInfoSwitch,
   SearchInfoItem,
-  SearchInfoList
+  SearchInfoList,
 } from "./style";
+import { Link } from "react-router-dom";
 
 class Header extends React.Component {
   getListArea = () => {
@@ -28,7 +29,7 @@ class Header extends React.Component {
       handleMouseEnter,
       handleMouseLeave,
       handleChangePage,
-      totalPage
+      totalPage,
     } = this.props;
     const jsList = list.toJS();
     const pageList = [];
@@ -53,7 +54,7 @@ class Header extends React.Component {
               onClick={() => handleChangePage(page, totalPage, this.spinIcon)}
             >
               <span
-                ref={icon => {
+                ref={(icon) => {
                   this.spinIcon = icon;
                 }}
                 className="iconfont spin"
@@ -75,7 +76,9 @@ class Header extends React.Component {
     const { focused, handleInputFocus, handleInputBlur, list } = this.props;
     return (
       <HeaderWrapper>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <Nav>
           <NavItem className="left active">首页</NavItem>
           <NavItem className="left">下载APP</NavItem>
@@ -111,7 +114,7 @@ class Header extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     handleInputFocus(list) {
       list.size === 0 && dispatch(actionCreators.getList());
@@ -139,17 +142,17 @@ const mapDispatchToProps = dispatch => {
       } else {
         dispatch(actionCreators.changePage(1));
       }
-    }
+    },
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     focused: state.getIn(["header", "focused"]),
     list: state.getIn(["header", "list"]),
     page: state.getIn(["header", "page"]),
     totalPage: state.getIn(["header", "totalPage"]),
-    mouseIn: state.getIn(["header", "mouseIn"])
+    mouseIn: state.getIn(["header", "mouseIn"]),
   };
 };
 

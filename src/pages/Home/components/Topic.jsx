@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { TopicWrapper, TopciItem } from "../style";
 // import imgs from "../../../static/1202579-b6e17367e11cdc3b.jpg";
-class Topic extends React.Component {
+class Topic extends React.PureComponent {
   render() {
     const { topicList } = this.props;
     return (
