@@ -6,6 +6,7 @@ import store from "./store";
 import { Provider } from "react-redux";
 import Home from "./pages/Home";
 import Detail from "./pages/Details";
+import Login from "./pages/Login";
 
 class App extends React.Component {
   render() {
@@ -15,7 +16,8 @@ class App extends React.Component {
           <div>
             <Header />
             <Route path="/" exact component={Home}></Route>
-            <Route path="/detail" exact component={Detail}></Route>
+            <Route path="/login" exact component={Login}></Route>
+            <Route path="/detail/:id" exact component={Detail}></Route>
           </div>
         </BrowserRouter>
       </Provider>
