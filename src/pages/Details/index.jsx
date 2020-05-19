@@ -1,5 +1,6 @@
 import React from "react";
 import { DetailWrapper, Header, Content } from "./style";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
 
@@ -28,4 +29,4 @@ const mapDiapatch = (dispatch) => ({
   },
 });
 
-export default connect(mapState, mapDiapatch)(Details);
+export default connect(mapState, mapDiapatch)(withRouter(Details));
